@@ -96,7 +96,7 @@ def main():
         # Sort top_scores by p-value in ascending order
         # top_scores.sort(key=lambda x: x[4])
 
-        # Output the top hits based on match score (p-value if possible)
+        # Output the top hits ordered by match score (p-value if possible)
         for motif_id, sequence_id, position, score, p_value in top_scores[:min(args.output_limit, len(top_scores))]:
             formatted_p_value = Decimal(p_value).__format__('e')
             output_file.write(f"{motif_id}\t{sequence_id}\t{position}\t{score}\t{formatted_p_value}\n")
