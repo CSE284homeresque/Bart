@@ -3,7 +3,7 @@ HOMER Jr. Motif Finder
 Disclaimer: We are biologists trying our best!
 
 **Overview**  
-Our team is interested in identifying potential transcription factor (TF)-binding motifs that are disrupted by single nucleotide polymorphisms (SNPs) associated with disease. To this end, we developed a HOMER-esque motif finder named Bart. Bart searches genomic sequences surrounding SNP coordinates for high similarity to known TF-binding motifs, represented as position frequency matrices. Each sequence-motif alignment that includes the position of the SNP receives a 'match score.' Bart then outputs the top x% (command-line option) of positive scores, including the motif ID, sequence ID (rsID), and the starting position of the motif alignment relative to the SNP.
+Our team is interested in identifying potential transcription factor (TF)-binding motifs that are disrupted by single nucleotide polymorphisms (SNPs) associated with disease. To this end, we developed a HOMER-esque motif finder named Bart. Bart searches genomic sequences surrounding SNP coordinates for high similarity to known TF-binding motifs, represented as position frequency matrices. Each sequence-motif alignment that includes the position of the SNP receives a 'match score.' Bart then outputs the top percentage or number (command-line option) of positive scores. The output file contains the motif IDs (JASPAR), sequence IDs (rsID), starting positions of the alignments (relative to the input sequences), and associated p-values (calculated from the score distribution of random background sequences).
 
 **Usage**  
 Bart.py [-h] -i INPUT -o OUTPUT -m MOTIF [-t SCORE_THRESHOLD] [-l OUTPUT_LIMIT]
@@ -21,17 +21,17 @@ Bart.py [-h] -i INPUT -o OUTPUT -m MOTIF [-t SCORE_THRESHOLD] [-l OUTPUT_LIMIT]
 
   	git clone https://github.com/CSE284homeresque/Bart.git
 
-  	pip install biopython
+  	pip install Biopython
 
-Note: If you encounter any issues running our script, please refer to the "pip_list.txt" file. This file contains a list of all the packages / version numbers that were used successfully.
+Bart also requires scipy and numpy, but these packages should already be installed. If you encounter any issues running our script, please refer to the "pip_list.txt" file, which contains a list of all the packages and version numbers that were used successfully.
 
 **Run a test example**   
-The example dataset used during development of this tool was SNPs associated with Type 2 Diabetes (T2D), downloaded from the NHGRI-EBI GWAS Catalog.   
+The example dataset used during the development of this tool was SNPs associated with Type 2 Diabetes (T2D), downloaded from the NHGRI-EBI GWAS Catalog.   
 
-Input sequences = T2D_SNP_demo.fasta   
-We filtered out any duplicate SNPs and those with missing information, resulting in a final dataset of approximately 3,500 unique SNPs. Using these coordinates, we extracted genomic sequences extending +/- 10 nucleotides from the SNP positions (given that TF-binding motifs are typically 6-10 nucleotides). Thus, each input sequence is 21 nucleotides long, with the SNP located at the center position. The complete sequence file is named 'T2D_SNP_full.fasta', but for testing purposes, we also provided 'T2D_SNP_demo.fasta,' which contains 150 sequences.   
+Input sequences = 'T2D_SNP_demo.fasta'   
+We filtered out duplicate SNPs and those with missing information, resulting in a final dataset of approximately 3,500 unique SNPs. Using these coordinates, we extracted genomic sequences extending +/- 10 nucleotides from the SNP positions (given that TF-binding motifs are typically 6-10 nucleotides in length). Thus, each input sequence is 21 nucleotides long, with the SNP positioned at the center. The sequence file is named 'T2D_SNP_full.fasta', but for testing purposes, we provided 'T2D_SNP_demo.fasta,' which contains 150 sequences.  
 
-Motif file = motifs.txt   
+Motif file = 'motifs.txt'   
 The motif file was downloaded from the JASPAR CORE database (2020, Vertebra).
 
 Instructions:
@@ -41,9 +41,10 @@ Instructions:
 
     python Bart.py -i T2D_SNP_demo.fasta -m motifs.txt -o output_demo
 
-This should take approximately 1 minute to run. When finished, the output_demo file will be in the repository directory.
+This should take ~5 minutes to run. When finished, the 'output_demo' file will be in the repository directory.   
+We also included the 'output_full' file so that you can see the output from the full dataset. This took about 1.5 hours to run.
 
-**Future improvements**  
-Our initial goal was to calculate a p-value for each match and then reorder the output file by p-values. However, we encountered challenges in calculating appropriate p-values and implementing the code. We are actively working to overcome this challenge, but in the meanwhile, the matches are simply ranked by score.
-
-
+**Future improvements**   
+1. There is significant variability in the p-values between runs because they are calculated using the score distribution of randomly generated background sequences, with the number of background sequences matching the number of input sequences. This variance decreases as sample size increases. We considered generating a larger set of background sequences regardles of the number of input sequences, but we opted against it because the gain in precision did not justify the associated increase in runtime, particularly for demonstration purposes.
+2. Bart currently takes ~1-2 hours to process our full dataset, which is significantly longer than the ~10 minutes taken by HOMER. Further exploration of optimization and parallelization strategies may result in improved efficiency.
+3. Generating a summary table would streamline result presentation and improve interpretation, especially when specific motifs recur frequently among the top hits.
