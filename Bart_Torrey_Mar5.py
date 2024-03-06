@@ -52,7 +52,7 @@ def generate_randomized_background(input_file, output_file):
     with open(output_file, 'w') as output_fasta:
         SeqIO.write(seq_records, output_fasta, "fasta")
 
-# Function to search for motifs in input sequences
+# Function to search for motifs 
 def process_jaspar_motif(jaspar_motif, sequences, scores_across_motifs):
     pwm = jaspar_motif.counts.normalize(pseudocounts=0.5)
     pssm = pwm.log_odds()
@@ -123,7 +123,7 @@ def main():
     top_input_scores = sorted_input_scores[:score_threshold_index] if sorted_input_scores else []
 
     with open(args.output, 'a', encoding='utf-8') as output_file:  # Use 'a' for append
-        # Calculate p-value using background scores
+        # Calculate p-value by normalizing to background sequence scores
         for motif_id, sequence_id, position, score in top_input_scores[:min(args.output_limit, len(top_input_scores))]:
             background_sequence_scores = [item[3] for item in background_scores_across_motifs.values()]
             background_scores = np.array(background_sequence_scores)
