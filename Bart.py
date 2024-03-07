@@ -11,10 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 # Function to calculate p-value
 def calculate_p_value(input_scores, background_scores):
-    # normalize input scores to background score distribution
+    # background score distribution
     mean_background = np.mean(background_scores)
     std_background = np.std(background_scores)
-    normalized_scores = (input_scores - mean_background) / std_background
     
     # calculate p-value
     p_value = norm.sf(input_scores, loc=mean_background, scale=std_background)
