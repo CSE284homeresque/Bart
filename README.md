@@ -18,18 +18,17 @@ Bart.py [-h] -i INPUT -o OUTPUT -m MOTIF [-t SCORE_THRESHOLD] [-l OUTPUT_LIMIT]
 **Installation instructions**  
 1.	Open terminal on JupyterHub (8CPU) and navigate to the directory where you want to clone our GitHub repository.
 2.	Run the following commands to clone the repository and install required packages:
-
-  	'git clone https://github.com/CSE284homeresque/Bart.git'
-
-  	'pip install Biopython'
-
+```
+  	git clone https://github.com/CSE284homeresque/Bart.git
+  	pip install Biopython
+```
 Bart also requires scipy and numpy, but these packages should already be installed. If you encounter any issues running our script, please refer to the "pip_list.txt" file, which contains a list of all the packages and version numbers that were used successfully.
 
 **Run a test example**   
 The example dataset used during the development of this tool was SNPs associated with Type 2 Diabetes (T2D), downloaded from the NHGRI-EBI GWAS Catalog.   
 
 Input sequences = 'T2D_SNP_demo.fasta'   
-We filtered out duplicate SNPs and those with missing information, resulting in a final dataset of approximately 3,500 unique SNPs. Using these coordinates, we extracted genomic sequences extending +/- 10 nucleotides from the SNP positions (given that TF-binding motifs are typically 6-10 nucleotides in length). Thus, each input sequence is 21 nucleotides long, with the SNP positioned at the center. The sequence file is named 'T2D_SNP_full.fasta', but for testing purposes, we provided 'T2D_SNP_demo.fasta,' which contains 150 sequences.  
+We filtered out duplicate SNPs and those with missing information, resulting in a final dataset of ~3,500 unique SNPs. Using these coordinates, we extracted genomic sequences extending +/- 10 nucleotides from the SNP positions (given that TF-binding motifs are typically 6-10 nucleotides in length). Thus, each input sequence is 21 nucleotides long, with the SNP positioned at the center. The sequence file is named 'T2D_SNP_full.fasta', but for testing purposes, we provided 'T2D_SNP_demo.fasta,' which contains 150 sequences.  
 
 Motif file = 'motifs.txt'   
 The motif file was downloaded from the JASPAR CORE database (2020, Vertebra).
@@ -38,13 +37,13 @@ Instructions:
 
 1.	Open terminal on JupyterHub (8CPU) and navigate to the repository directory.
 2.	Run the following command (optionally, you can change the score threshold and output limit options from their default values):
-
-    'python Bart.py -i T2D_SNP_demo.fasta -m motifs.txt -o output_demo'
-
-This should take ~5 minutes to run. When finished, the 'output_demo' file will be in the repository directory.   
-We also included the 'output_full' file so that you can see the output from the full dataset. This took about 1.5 hours to run.
+```
+    python Bart.py -i T2D_SNP_demo.fasta -m motifs.txt -o output_demo
+```
+This should take about 5 minutes to run. When finished, the 'output_demo' file will be in the repository directory.   
+We also included the 'output_full' file so you can see the output from the full dataset. This took about 1.5 hours to run.
 
 **Future improvements**   
 1. There is variability in the p-values between runs because they are calculated using the score distribution of randomly-generated background sequences, with the number of background sequences matching the number of input sequences. As a result, the variance decreases as sample size increases. We considered generating a larger set of background sequences regardles of the number of input sequences, but we opted against it because the gain in precision did not justify the associated increase in runtime, particularly for demonstration purposes.
-2. Bart currently takes ~1-2 hours to process our full dataset, which is significantly longer than the ~10 minutes taken by HOMER. Further exploration of optimization and parallelization strategies may result in improved efficiency.
+2. Bart currently takes 1-2 hours to process our full dataset, which is significantly longer than the ~10 minutes taken by HOMER. Further exploration of optimization and parallelization strategies may result in improved efficiency.
 3. Generating a summary table would streamline result presentation and improve interpretation, especially when specific motifs recur frequently among the top hits.
