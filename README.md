@@ -21,8 +21,8 @@ Bart.py [-h] -i INPUT -o OUTPUT -m MOTIF [-t SCORE_THRESHOLD] [-l OUTPUT_LIMIT]
 1.	Open terminal on JupyterHub (8CPU) and navigate to the directory where you want to clone our GitHub repository.
 2.	Run the following commands to clone the repository and install required packages:
 ```
-  	git clone https://github.com/CSE284homeresque/Bart.git
-  	pip install Biopython
+git clone https://github.com/CSE284homeresque/Bart.git
+pip install Biopython
 ```
 Bart also requires scipy and numpy, but these packages should already be installed. If you encounter any issues running our script, please refer to the "pip_list.txt" file, which contains a list of all the packages and version numbers that were used successfully.
 
@@ -40,7 +40,7 @@ Instructions:
 1.	Open terminal on JupyterHub (8CPU) and navigate to the repository directory.
 2.	Run the following command (optionally, you can change the score threshold and output limit options from their default values):
 ```
-    python Bart.py -i T2D_SNP_demo.fasta -m motifs.txt -o output_demo
+python Bart.py -i T2D_SNP_demo.fasta -m motifs.txt -o output_demo
 ```
 This should take about 5 minutes to run. When finished, the 'output_demo' file will be in the repository directory.   
 We also included the 'output_full' file so you can see the output from the full dataset. This took about 1.5 hours to run.
