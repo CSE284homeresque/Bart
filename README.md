@@ -1,7 +1,7 @@
 # Bart   
 HOMER Jr. Motif Finder   
 
-Group 9: Torrey Rhyne, Delisa Ramos, Jackie Lanzalotto    
+Group 9: Jackie Lanzalotto, Delisa Ramos, Torrey Rhyne    
 Disclaimer: We are biologists trying our best!
 
 **Overview**  
