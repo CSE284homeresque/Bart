@@ -43,7 +43,7 @@ Instructions:
 python Bart.py -i T2D_SNP_demo.fasta -m motifs.txt -o output_demo
 ```
 This should take about 5 minutes to run. When finished, the 'output_demo' file will be in the repository directory.   
-We also included the 'output_full' file so you can see the output from the full dataset. This took about 1.5 hours to run.
+We also included the 'output_full' file so you can see the output from the full dataset. This took about 1.5 hours to run.    
 Note: Bart processes the full dataset in about 15 minutes on my computer. These times are using the JupyterHub server (8CPU).
 
 **Future improvements**   
