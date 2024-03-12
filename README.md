@@ -12,10 +12,10 @@ Bart.py [-h] -i INPUT -o OUTPUT -m MOTIF [-t SCORE_THRESHOLD] [-l OUTPUT_LIMIT]
 
 -h, --help = help message  
 -i INPUT, --input INPUT = input sequences file (FASTA format)  
--m MOTIF, --motif MOTIF = motifs file (JASPAR format)  
--o OUTPUT, --output OUTPUT = output results file  
+-m MOTIF, --motif MOTIF = motifs file (JASPAR PFM format)  
+-o OUTPUT, --output OUTPUT = output results file name
 -t SCORE_THRESHOLD, --score_threshold SCORE_THRESHOLD = top scores threshold (optional, default = 0.05)  
--l OUTPUT_LIMIT, --output_limit OUTPUT_LIMIT = max number of matches outputted (optional, default = 500)
+-l OUTPUT_LIMIT, --output_limit OUTPUT_LIMIT = max number of hits outputted (optional, default = 500)
 
 **Installation instructions**  
 1.	Open terminal on JupyterHub (8CPU) and navigate to the directory where you want to clone our GitHub repository.
