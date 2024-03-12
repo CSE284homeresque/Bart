@@ -94,7 +94,7 @@ def process_jaspar_motif(jaspar_motif, sequences, scores_across_motifs):
 def main():
     parser = argparse.ArgumentParser(description="Motif Finder Script")
     parser.add_argument("-i", "--input", required=True, help="Input sequences file (FASTA format)")
-    parser.add_argument("-o", "--output", required=True, help="Output results file")
+    parser.add_argument("-o", "--output", required=True, help="Output results file name")
     parser.add_argument("-m", "--motif", required=True, help="Input motif file (JASPAR PFM format)")
     parser.add_argument("-t", "--score_threshold", type=float, default=0.05, help="Top scores threshold (default = 0.05)")
     parser.add_argument("-l", "--output_limit", type=int, default=500, help="Output limit for the number of hits (default = 500)")
