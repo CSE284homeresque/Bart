@@ -5,7 +5,7 @@ Group 9: Jackie Lanzalotto, Delisa Ramos, Torrey Rhyne
 Disclaimer: We are biologists trying our best!
 
 **Overview**  
-Our team is interested in identifying potential transcription factor (TF)-binding motifs that are disrupted by single nucleotide polymorphisms (SNPs) associated with disease. To this end, we developed a HOMER-esque motif finder named Bart. Bart searches genomic sequences surrounding SNP coordinates for high similarity to known TF-binding motifs, represented as position frequency matrices. Each sequence-motif alignment that includes the position of the SNP receives a 'match score.' Bart then outputs the top percentage or number (command-line option) of positive scores. The output file contains the motif IDs (JASPAR), sequence IDs (rsID), starting positions of the alignments (relative to the input sequences), and associated p-values (calculated from the score distribution of random background sequences).
+Our team is interested in identifying potential transcription factor (TF)-binding motifs that are disrupted by single nucleotide polymorphisms (SNPs) associated with disease. To this end, we developed Bart, a Python script motif finder inspired by HOMER's findMotifs.pl. Bart searches genomic sequences surrounding SNP coordinates for high similarity to known TF-binding motifs. Each sequence-motif alignment that includes the position of the SNP receives a 'match score.' The script then outputs the top percentage or number of positive scores, including the motif ID, sequence ID, alignment position, and p-value.
 
 **Usage**  
 Bart.py [-h] -i INPUT -o OUTPUT -m MOTIF [-t SCORE_THRESHOLD] [-l OUTPUT_LIMIT]
@@ -30,10 +30,10 @@ Bart also requires scipy and numpy, but these packages should already be install
 The example dataset used during the development of this tool was SNPs associated with Type 2 Diabetes (T2D), downloaded from the NHGRI-EBI GWAS Catalog.   
 
 Input sequences = 'T2D_SNP_demo.fasta'   
-We filtered out duplicate SNPs and those with missing information, resulting in a final dataset of ~3,500 unique SNPs. Using these coordinates, we extracted genomic sequences extending +/- 10 nucleotides from the SNP positions (given that TF-binding motifs are typically 6-10 nucleotides in length). Thus, each input sequence is 21 nucleotides long, with the SNP positioned at the center. The sequence file is named 'T2D_SNP_full.fasta', but for testing purposes, we provided 'T2D_SNP_demo.fasta,' which contains 150 sequences.  
+We filtered out duplicate SNPs and those with missing information, resulting in a final dataset of ~3,500 unique SNPs. Using these coordinates, we extracted genomic sequences extending +/- 10 nucleotides from the SNP positions (given that TF-binding motifs are typically 6-10 nucleotides in length). Thus, each input sequence is 21 nucleotides long, with the SNP positioned at the center. The resulting sequences were saved in FASTA format, with the rsIDs serving as sequence identifiers. The sequence file is named 'T2D_SNP_full.fasta', but for testing purposes, we provided 'T2D_SNP_demo.fasta,' which contains 150 sequences.  
 
 Motif file = 'motifs.txt'   
-The motif file was downloaded from the JASPAR CORE database (2020, Vertebra).
+We downloaded the TF-binding motifs in PFM (position frequency matrix) format from the JASPAR CORE database (2020, Vertebra). 
 
 Instructions:
 
