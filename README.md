@@ -48,5 +48,5 @@ Note: Bart processes the full dataset in about 15 minutes on my computer. These 
 
 **Future improvements**   
 1. There is variability in the p-values between runs because they are calculated using the score distribution of randomly-generated background sequences, with the number of background sequences matching the number of input sequences. As a result, the variation decreases as sample size increases. We considered generating a larger set of background sequences regardles of the number of input sequences, but we opted against it because the gain in precision did not justify the associated increase in runtime, particularly for demonstration purposes.
-2. Bart takes about three times longer than HOMER's findMotifs.pl tool. Further exploration of optimization and parallelization strategies may result in improved efficiency.
+2. Further exploration of optimization and parallelization strategies may result in improved efficiency.
 3. Generating a summary table would streamline result presentation and improve interpretation, especially when specific motifs recur frequently among the top hits.
